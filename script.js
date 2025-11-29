@@ -8,7 +8,6 @@ function calculator() {
     const buttonsOperator = document.querySelectorAll('.button-operator');
     const buttonEquals = document.querySelector('#button-equals');
     const buttonsNumbers = document.querySelectorAll('.button-number');
-    const buttonDecimal = document.querySelector('#button-decimal');
 
     let a = '';
     let b = '';
@@ -55,12 +54,12 @@ function calculator() {
             return null;
         }
 
-        if (register.length === 1 && register.includes('0') && this.textContent === '0') {
-            return null;
+        else if (!register && this.textContent === '.') {
+            register += '0';
         }
 
-        if (!register && this.textContent === '.') {
-            register += '0';
+        else if (register.length === 1 && (register.includes('0') && this.textContent !== '.')) {
+            register = '';
         }
 
         register += this.textContent;
