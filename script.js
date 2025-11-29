@@ -30,6 +30,48 @@ function calculator() {
 
     buttonDelete.addEventListener('click', backspace);
 
+    document.addEventListener('keydown', handleKeydown);
+
+    function handleKeydown(e) {
+        const key = e.key;
+
+        if ((key >= '0' && key <= '9') || key === '.') {
+            clickMatchingButton(buttonsNumbers, key);
+            return;
+        }
+
+        if ('+-*/'.includes(key)) {
+            e.preventDefault();
+            clickMatchingButton(buttonsOperator, key);
+            return;
+        }
+
+        if (key === 'Enter' || key === '=') {
+            e.preventDefault();
+            buttonEquals.click();
+            return;
+        }
+
+        if (key === 'Escape' || key === 'C' || key === 'c') {
+            buttonClear.click();
+            return;
+        }
+
+        if (key === 'Backspace') {
+            e.preventDefault();
+            buttonDelete.click();
+            return;
+        }
+    }
+
+    function clickMatchingButton(buttons, key) {
+        buttons.forEach((button) => {
+            if (button.textContent === key) {
+                button.click();
+            }
+        });
+    }
+
     function debug(where) {
         console.log(`Debug ${where}: a: ${a} op: ${operator} b: ${b} result: ${result} register: ${register}`);
     }
@@ -68,7 +110,7 @@ function calculator() {
 
     function selectOperator() {
 
-        if (a && operator && register) {
+        if (a !== '' && operator !== '' && register !== '' && !isNaN(Number(register))) {
             operate();
         }
 
