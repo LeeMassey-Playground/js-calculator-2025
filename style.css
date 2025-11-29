@@ -41,13 +41,16 @@ body {
 }
 
 #display-b {
-    height: 1.5rem;
+    height: 2rem;
 }
 
 #display-a {
-    height: 2rem;
+    display: flex;
+    height: 2.5rem;
     font-size: 1.5rem;
     font-weight: bold;
+    justify-content: end;
+    align-items: end;
 }
 
 #buttons {

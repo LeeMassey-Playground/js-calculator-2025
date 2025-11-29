@@ -92,7 +92,7 @@ function calculator() {
         }
 
         if (register.includes('.') && this.textContent === '.') {
-            return null;
+            return;
         }
 
         else if (!register && this.textContent === '.') {
@@ -103,7 +103,9 @@ function calculator() {
             register = '';
         }
 
-        register += this.textContent;
+        if (register.length < 18) {
+            register += this.textContent;
+        }
 
         updateDisplay();
     }
@@ -137,16 +139,16 @@ function calculator() {
 
                 switch (operator) {
                     case '+':
-                        result = add(numA, numB);
+                        result = Number(add(numA, numB).toPrecision(18));
                         break;
                     case '-':
-                        result = subtract(numA, numB);
+                        result = Number(subtract(numA, numB).toPrecision(18));
                         break;
                     case '*':
-                        result = multiply(numA, numB);
+                        result = Number(multiply(numA, numB).toPrecision(18));
                         break;
                     case '/':
-                        result = divide(numA, numB);
+                        result = Number(divide(numA, numB).toPrecision(18));
                 }
 
                 register = result.toString();
