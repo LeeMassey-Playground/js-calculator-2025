@@ -80,7 +80,7 @@ function calculator() {
             updateDisplay();
         }
 
-        if (a && operator && !register) {
+        if (a && operator) {
             operator = this.textContent;
             updateDisplay();
         }
@@ -88,7 +88,7 @@ function calculator() {
 
     function operate() {
         if (!result && a && operator && register) {
-            if (!(operator === '/' && register === '0')) {
+            if (!(operator === '/' && Number(register) === 0)) {
                 b = register;
                 let numA = Number(a);
                 let numB = Number(b);
@@ -132,7 +132,7 @@ function calculator() {
         register = '';
         result = '';
         equals = '';
-        
+
         updateDisplay();
     }
 
