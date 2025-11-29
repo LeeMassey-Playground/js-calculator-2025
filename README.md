@@ -3,6 +3,8 @@
 A simple, clean, fully functional calculator built with **HTML**, **CSS**, and **vanilla JavaScript**.
 This project demonstrates DOM manipulation, event handling, state management, and logical operation flow — without relying on any frameworks.
 
+Will add Keydown functionality next.
+
 ---
 
 ## 🚀 Live Demo
