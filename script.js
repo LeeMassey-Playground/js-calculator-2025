@@ -16,21 +16,6 @@ function calculator() {
     let result = '';
     let equals = '';
 
-    function debug() {
-        console.log(`a: ${a} op: ${operator} b: ${b} result: ${result} register: ${register}`);
-    }
-
-    function updateDisplay() {
-        if (result) {
-            equals = ' = ';
-        }
-
-        displayA.textContent = register;
-        displayB.textContent = `${a} ${operator} ${b} ${equals}`;
-
-        debug();
-    }
-
     buttonsNumbers.forEach((button) => {
         button.addEventListener('click', appendRegister);
     });
@@ -44,6 +29,20 @@ function calculator() {
     buttonClear.addEventListener('click', clear);
 
     buttonDelete.addEventListener('click', backspace);
+
+    function debug(where) {
+        console.log(`Debug ${where}: a: ${a} op: ${operator} b: ${b} result: ${result} register: ${register}`);
+    }
+
+    function updateDisplay() {
+        if (result) {
+            equals = ' = ';
+        }
+
+        displayA.textContent = register;
+        displayB.textContent = `${a} ${operator} ${b} ${equals}`;
+    }
+
 
     function appendRegister() {
         if (result) {
@@ -68,8 +67,8 @@ function calculator() {
     }
 
     function selectOperator() {
+
         if (a && operator && register) {
-            result = '';
             operate();
         }
 
@@ -80,38 +79,49 @@ function calculator() {
             operator = this.textContent;
             updateDisplay();
         }
+
+        if (a && operator && !register) {
+            operator = this.textContent;
+            updateDisplay();
+        }
     }
 
     function operate() {
         if (!result && a && operator && register) {
-            b = register;
-            let numA = Number(a);
-            let numB = Number(b);
+            if (!(operator === '/' && register === '0')) {
+                b = register;
+                let numA = Number(a);
+                let numB = Number(b);
 
-            switch (operator) {
-                case '+':
-                    result = add(numA, numB);
-                    break;
-                case '-':
-                    result = subtract(numA, numB);
-                    break;
-                case '*':
-                    result = multiply(numA, numB);
-                    break;
-                case '/':
-                    result = divide(numA, numB);
+                switch (operator) {
+                    case '+':
+                        result = add(numA, numB);
+                        break;
+                    case '-':
+                        result = subtract(numA, numB);
+                        break;
+                    case '*':
+                        result = multiply(numA, numB);
+                        break;
+                    case '/':
+                        result = divide(numA, numB);
+                }
+
+                register = result.toString();
+                
+                updateDisplay();
+
+                a = '';
+                b = '';
+                operator = '';
+                equals = '';
             }
 
-            register = result.toString();
-            
-            updateDisplay();
-
-            a = '';
-            b = '';
-            operator = '';
-            equals = '';
-
-            debug();
+            else {
+                alert('Cannot divide by 0!!!');
+                register = '';
+                updateDisplay();
+            }
         }
     }
 
@@ -122,8 +132,7 @@ function calculator() {
         register = '';
         result = '';
         equals = '';
-
-        debug();
+        
         updateDisplay();
     }
 
