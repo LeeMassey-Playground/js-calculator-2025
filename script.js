@@ -103,7 +103,7 @@ function calculator() {
             register = '';
         }
 
-        if (register.length < 18) {
+        if (register.length < 15) {
             register += this.textContent;
         }
 
@@ -139,16 +139,16 @@ function calculator() {
 
                 switch (operator) {
                     case '+':
-                        result = Number(add(numA, numB).toPrecision(18));
+                        result = Number(add(numA, numB).toPrecision(15));
                         break;
                     case '-':
-                        result = Number(subtract(numA, numB).toPrecision(18));
+                        result = Number(subtract(numA, numB).toPrecision(15));
                         break;
                     case '*':
-                        result = Number(multiply(numA, numB).toPrecision(18));
+                        result = Number(multiply(numA, numB).toPrecision(15));
                         break;
                     case '/':
-                        result = Number(divide(numA, numB).toPrecision(18));
+                        result = Number(divide(numA, numB).toPrecision(15));
                 }
 
                 register = result.toString();
