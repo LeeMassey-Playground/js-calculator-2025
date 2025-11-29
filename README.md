@@ -7,7 +7,7 @@ This project demonstrates DOM manipulation, event handling, state management, an
 
 ## 🚀 Live Demo
 
-👉 **Live Demo:** * https://leemassey-playground.github.io/js-calculator-2025/ *
+👉 https://leemassey-playground.github.io/js-calculator-2025/
 
 ---
 
